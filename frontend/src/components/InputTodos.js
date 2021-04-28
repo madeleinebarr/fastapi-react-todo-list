@@ -3,11 +3,14 @@ import React, { Fragment, useState } from "react";
 const InputTodo = ({ todos }) => {
     const [item, setItem] = useState("");
 
+    // console.log(todos[todos.length-1].id + 1);
+
     const onSubmitForm = async (e) => {
         e.preventDefault();
+    
         try {
             const body = { 
-                "id": todos.length + 1,
+                "id": todos[todos.length-1].id + 1,
                 "item": item
              };
             const response = await fetch("http://localhost:8000/todos", {
@@ -25,7 +28,7 @@ const InputTodo = ({ todos }) => {
 
     return(
         <Fragment>
-      <h1 className="text-center my-5">Input Todo</h1>
+      <h1 className="text-center my-5">My todo list</h1>
       <form className="d-flex" onSubmit={onSubmitForm}>
         <input
           type="text"
